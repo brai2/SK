@@ -1,29 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Search, Settings, Ticket } from 'lucide-react';
 import './announcements.css';
-import announcementsData from './data/announcements.json';
 
 function Announcements() {
-  const [items] = useState(announcementsData);
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState('all');
-  const [visibleCount, setVisibleCount] = useState(4);
-
-  useEffect(() => {
-    setVisibleCount(4);
-  }, [filter, query]);
-
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return items.filter((it) => {
-      if (filter !== 'all' && it.type !== filter) return false;
-      if (!q) return true;
-      return (it.title + ' ' + (it.body || '')).toLowerCase().includes(q);
-    });
-  }, [items, filter, query]);
-
-  const featured = filtered[0] || items[0];
 
   return (
     <div className="ann-container">
@@ -40,10 +22,10 @@ function Announcements() {
             <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Tìm kiếm thông báo..." />
           </div>
           <div className="pill-group">
-            <button onClick={() => setFilter('all')} className={`pill ${filter==='all' ? 'active' : ''}`}>Tất cả</button>
-            <button onClick={() => setFilter('system')} className={`pill ${filter==='system' ? 'active' : ''}`}>Hệ thống</button>
-            <button onClick={() => setFilter('event')} className={`pill ${filter==='event' ? 'active' : ''}`}>Sự kiện</button>
-            <button onClick={() => setFilter('promo')} className={`pill ${filter==='promo' ? 'active' : ''}`}>Khuyến mãi</button>
+            <button type="button" onClick={() => setFilter('all')} className={`pill ${filter === 'all' ? 'active' : ''}`}>Tất cả</button>
+            <button type="button" onClick={() => setFilter('system')} className={`pill ${filter === 'system' ? 'active' : ''}`}>Hệ thống</button>
+            <button type="button" onClick={() => setFilter('event')} className={`pill ${filter === 'event' ? 'active' : ''}`}>Sự kiện</button>
+            <button type="button" onClick={() => setFilter('promo')} className={`pill ${filter === 'promo' ? 'active' : ''}`}>Khuyến mãi</button>
           </div>
         </div>
       </section>
@@ -86,7 +68,7 @@ function Announcements() {
                 <div className="info-content">
                   <span className="info-time">2 ngày trước</span>
                   <h3>Vé điện tử của bạn đã sẵn sàng</h3>
-                  <p>Xác nhận đăng ký cho "Hội thảo Thiết kế Bền vững" đã hoàn tất. Bạn có thể tải mã QR tham dự trong phần Profile.</p>
+                  <p>Xác nhận đăng ký cho &quot;Hội thảo Thiết kế Bền vững&quot; đã hoàn tất. Bạn có thể tải mã QR tham dự trong phần Profile.</p>
                 </div>
               </div>
             </div>
@@ -118,7 +100,7 @@ function Announcements() {
             </div>
 
             <div className="load-more-wrapper">
-              <button className="btn-load-more">Tải thêm thông báo</button>
+              <button type="button" className="btn-load-more">Tải thêm thông báo</button>
             </div>
           </div>
 
