@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const orderRoutes = require("./routes/orderRoutes");
 const eventRoutes = require("./routes/eventRoutes");
+
 const ticketTypeRoutes = require("./routes/ticketTypeRoutes");
+
 
 dotenv.config();
 const app = express();
@@ -23,6 +25,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.use("/api/orders", orderRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/ticket-types", ticketTypeRoutes);
+
 
 // Basic route
 app.get("/", (req, res) => {

@@ -4,7 +4,9 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const Event = require("../models/Event");
+
 const TicketType = require("../models/TicketType");
+
 
 const samples = [
   {
@@ -58,6 +60,7 @@ const samples = [
 
 async function run() {
   await mongoose.connect(process.env.MONGO_URI);
+
   const titles = samples.map((s) => s.title);
   const oldEvents = await Event.find({ title: { $in: titles } }).select("_id");
   const oldIds = oldEvents.map((e) => e._id);
@@ -88,6 +91,7 @@ async function run() {
     ]);
     console.log("Đã seed 2 loại vé cho Tech Future Summit.");
   }
+
   console.log("Đã seed", samples.length, "sự kiện mẫu.");
   await mongoose.disconnect();
 }
