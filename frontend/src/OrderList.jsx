@@ -5,21 +5,23 @@ const OrderList = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 1. Hàm lấy dữ liệu từ Backend của Việt
-  const fetchOrders = async () => {
-    try {
-      // Thay đổi URL cho đúng với API của bạn (đã test 201 thành công)
-    const response = await axios.get('http://localhost:3000/api/orders/all');      
-      setOrders(response.data.data || response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Lỗi khi lấy dữ liệu:", error);
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchOrders();
+    let cancelled = false;
+    (async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/orders/all');
+        if (!cancelled) {
+          setOrders(response.data.data || response.data);
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error('Lỗi khi lấy dữ liệu:', err);
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // 2. Hàm xử lý Xóa đơn hàng (Kết nối với API DELETE bạn vừa làm)
@@ -30,7 +32,7 @@ const OrderList = () => {
         // Xóa xong thì cập nhật lại danh sách trên màn hình
         setOrders(orders.filter(order => order._id !== id));
         alert("Đã xóa thành công!");
-      } catch (error) {
+      } catch {
         alert("Xóa thất bại!");
       }
     }
