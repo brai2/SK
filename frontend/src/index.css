@@ -32,6 +32,12 @@
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  --secondary: #a855f7;
+  --text-tiny: #94a3b8;
+  --bg-app: #fcfaff;
+  --bg-card: #ffffff;
+  --font-main: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Outfit', system-ui, sans-serif;
 }
 
 * {
@@ -47,6 +53,11 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
 }
 
 a {
@@ -652,3 +663,543 @@ ul {
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* --- Ticket list / QR scanner (feature/danhsachve-quet-qr) --- */
+/* =========================================
+   Layout Structure
+   ========================================= */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.ticket-app-sidebar {
+  width: var(--sidebar-width);
+  background: white;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar-header {
+  padding: 0 32px 48px;
+}
+
+.brand-name {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--primary);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.brand-sub {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-tiny);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+  display: block;
+}
+
+.nav-menu {
+  flex: 1;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 16px;
+  background: transparent;
+}
+
+.nav-link.active {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.sidebar-footer {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-create-side {
+  background: var(--secondary);
+  color: white;
+  padding: 18px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 1rem;
+  box-shadow: 0 8px 16px rgba(168, 85, 247, 0.25);
+  margin-bottom: 24px;
+}
+
+/* Main Content Wrapper */
+.main-content {
+  flex: 1;
+  padding: 0 48px 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Navigation Bar (Integrated in content) */
+.content-header {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.search-bar-wrap {
+  position: relative;
+  width: 400px;
+}
+
+.search-bar-wrap input {
+  width: 100%;
+  padding: 14px 20px 14px 50px;
+  background: #f1f0f7;
+  border: none;
+  border-radius: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tiny);
+}
+
+.header-tabs {
+  display: flex;
+  gap: 32px;
+  margin-left: 48px;
+}
+
+.header-tab {
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding-bottom: 8px;
+  border-bottom: 3px solid transparent;
+}
+
+.header-tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.notif-btn {
+  color: var(--text-muted);
+  background: transparent;
+}
+
+.user-info {
+  text-align: right;
+}
+
+.user-name {
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.user-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+
+.user-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* My Tickets Heading */
+.tickets-heading-area {
+  margin-bottom: 40px;
+}
+
+.verified-tag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.page-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 4px 0 12px;
+  line-height: 1.1;
+}
+
+.page-subtitle {
+  color: var(--text-muted);
+  max-width: 600px;
+  font-weight: 500;
+}
+
+/* Tickets Table/List */
+.tickets-table-card {
+  background: white;
+  border-radius: 32px;
+  padding: 40px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 40px;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 0 0 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.table-col-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #d1d5db;
+  letter-spacing: 1px;
+}
+
+.ticket-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid #f9fafb;
+}
+
+.ticket-row:last-child {
+  border-bottom: none;
+}
+
+.ticket-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.status-indicator {
+  width: 4px;
+  height: 44px;
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+.ticket-name {
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+
+.ticket-sub {
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.ticket-schedule {
+  display: flex;
+  flex-direction: column;
+}
+
+.sched-date {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.sched-time {
+  font-size: 0.75rem;
+  color: var(--text-tiny);
+  font-weight: 600;
+}
+
+.ticket-venue {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.ticket-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.btn-check-in {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.btn-view-ticket-small {
+  background: var(--secondary);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Bottom Summary Cards */
+.summary-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  gap: 32px;
+}
+
+.summary-card {
+  background: white;
+  padding: 32px;
+  border-radius: 32px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.summ-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-tiny);
+  margin-bottom: 8px;
+}
+
+.summ-value {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.summ-meta {
+  margin-top: auto;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.summ-meta.positive {
+  color: #10b981;
+}
+
+/* Scanner Ready Card */
+.scanner-ready-card {
+  background: var(--secondary);
+  color: white;
+  padding: 32px;
+  border-radius: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-title {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.scan-status {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.scan-icon-wrap {
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Floating Quick Scan Button */
+.btn-quick-scan {
+  position: fixed;
+  bottom: 40px;
+  right: 48px;
+  background: var(--secondary);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 1rem;
+  box-shadow: 0 12px 24px rgba(168, 85, 247, 0.4);
+  z-index: 1000;
+}
+
+/* =========================================
+   Scanner Page Restoration (Old Design)
+   ========================================= */
+.scanner-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 64px;
+}
+
+.success-icon-square {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.checkmark-circle {
+  width: 48px;
+  height: 48px;
+  background: #10b981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.attendee-card-v2 {
+  background: white;
+  border-radius: 32px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 100px 1fr 200px;
+  align-items: center;
+  gap: 32px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  max-width: 800px;
+  width: 100%;
+}
+
+.attendee-v2-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.attendee-v2-main h3 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin: 4px 0 12px;
+}
+
+.gate-v2-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 32px;
+  border-left: 1px solid var(--border);
+}
+
+.gate-v2-name {
+  font-weight: 800;
+  font-size: 1.35rem;
+  margin: 4px 0;
+}
+
+.seat-v2-info {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.scanner-action-btns {
+  display: flex;
+  gap: 20px;
+  margin-top: 64px;
+}
+
+.btn-scan-next {
+  background: var(--primary);
+  color: white;
+  padding: 18px 40px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 16px rgba(124, 58, 237, 0.25);
+}
+
+.btn-dashboard-white {
+  background: white;
+  color: var(--primary);
+  padding: 18px 40px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.simulation-controls-v2 {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.badge-v2 {
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+

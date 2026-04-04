@@ -12,6 +12,7 @@ import TicketManagement from './admin/TicketManagement.jsx';
 import StaffDashboardLayout from './components/layout/StaffDashboardLayout.jsx';
 import QRCheckIn from './pages/dashboard/QRCheckIn.jsx';
 import ParticipantList from './pages/dashboard/ParticipantList.jsx';
+import TicketCheckInApp from './pages/TicketCheckInApp.jsx';
 
 function StaffComingSoon({ title }) {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Route path="/dat-ve" element={<TicketBooking />} />
       <Route path="/thanh-toan" element={<CheckoutPayment />} />
       <Route path="/thanh-toan-dem-nguoc" element={<PaymentStep />} />
+      <Route path="/danh-sach-ve-quet-qr" element={<TicketCheckInApp />} />
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
         <Route path="events" element={<EventManagement />} />
