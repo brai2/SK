@@ -676,14 +676,15 @@ ul {
 /* Sidebar */
 .ticket-app-sidebar {
   width: var(--sidebar-width);
-  background: white;
+  background: #ffffff;
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  padding: 40px 0;
+  padding: 36px 0 28px;
   position: sticky;
   top: 0;
   height: 100vh;
+  min-height: 100vh;
 }
 
 .sidebar-header {
@@ -1201,5 +1202,186 @@ ul {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.check-title-hero {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 12px;
+  color: var(--text-main);
+}
+
+.check-subtitle-hero {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.label-tiny {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--text-tiny);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* --- Event Hub + My Tickets dark / Scanner light --- */
+.ticket-check-in-app {
+  min-height: 100vh;
+}
+
+.sidebar-header--event-hub {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 0 28px 40px;
+}
+
+.brand-mark {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #ede9fe 0%, #f5f3ff 100%);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.18);
+}
+
+.sidebar-footer--minimal {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.main-content--scanner-light {
+  background: linear-gradient(180deg, #f7f4ff 0%, #f0eefe 35%, #faf8ff 100%);
+  color: var(--text-main);
+}
+
+.main-content--scanner-light .check-title-hero,
+.main-content--scanner-light .attendee-v2-main h3,
+.main-content--scanner-light .gate-v2-name {
+  color: #0f172a;
+}
+
+.main-content--tickets-dark {
+  background: radial-gradient(ellipse 120% 80% at 50% -20%, rgba(124, 58, 237, 0.25) 0%, transparent 55%),
+    #0a0a0c;
+  color: #f8fafc;
+  min-height: 100vh;
+}
+
+.main-content--tickets-dark .content-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 32px;
+  padding-bottom: 8px;
+}
+
+.main-content--tickets-dark .search-bar-wrap input {
+  background: rgba(255, 255, 255, 0.06);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.main-content--tickets-dark .search-bar-wrap input::placeholder {
+  color: #64748b;
+}
+
+.main-content--tickets-dark .search-icon {
+  color: #94a3b8;
+}
+
+.main-content--tickets-dark .header-tab {
+  color: #94a3b8;
+}
+
+.main-content--tickets-dark .header-tab.active {
+  color: #e9d5ff;
+  border-bottom-color: #a855f7;
+}
+
+.main-content--tickets-dark .user-name {
+  color: #f8fafc;
+}
+
+.main-content--tickets-dark .user-tag {
+  color: #c4b5fd;
+}
+
+.main-content--tickets-dark .notif-btn {
+  color: #94a3b8;
+}
+
+.main-content--tickets-dark .verified-tag {
+  color: #a78bfa;
+}
+
+.main-content--tickets-dark .page-title {
+  color: #ffffff;
+}
+
+.main-content--tickets-dark .page-subtitle {
+  color: #94a3b8;
+}
+
+.main-content--tickets-dark .table-col-label {
+  color: #c4b5fd;
+  opacity: 0.9;
+}
+
+.main-content--tickets-dark .ticket-row {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.main-content--tickets-dark .ticket-name {
+  color: #f8fafc;
+}
+
+.main-content--tickets-dark .sched-date {
+  color: #e2e8f0;
+}
+
+.main-content--tickets-dark .ticket-venue {
+  color: #cbd5e1;
+}
+
+.main-content--tickets-dark .summ-meta {
+  color: #94a3b8;
+}
+
+.main-content--tickets-dark .btn-quick-scan {
+  box-shadow: 0 12px 28px rgba(168, 85, 247, 0.45);
+}
+
+.dashboard-placeholder {
+  padding: 48px 8px 80px;
+  max-width: 560px;
+}
+
+.dashboard-placeholder__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #a78bfa;
+  margin-bottom: 12px;
+}
+
+.dashboard-placeholder__title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.dashboard-placeholder__text {
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
