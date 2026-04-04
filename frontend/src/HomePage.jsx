@@ -19,6 +19,9 @@ function HomePage() {
             <NavLink to="/dat-ve" className={({ isActive }) => (isActive ? 'active' : undefined)}>
               Đặt vé
             </NavLink>
+            <NavLink to="/thong-bao" className={({ isActive }) => (isActive ? 'active' : undefined)}>
+              Thông báo
+            </NavLink>
             <a href="#">About</a>
             <a href="#">Contact</a>
           </div>

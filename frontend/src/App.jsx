@@ -2,6 +2,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './HomePage.jsx';
 import TicketBooking from './TicketBooking.jsx';
 import CheckoutPayment from './CheckoutPayment.jsx';
+import Announcements from './Announcements.jsx';
+import PaymentStep from './PaymentStep.jsx';
 import AdminLayout from './admin/AdminLayout.jsx';
 import AdminDashboard from './admin/AdminDashboard.jsx';
 import EventManagement from './admin/EventManagement.jsx';
@@ -24,8 +26,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/thong-bao" element={<Announcements />} />
       <Route path="/dat-ve" element={<TicketBooking />} />
       <Route path="/thanh-toan" element={<CheckoutPayment />} />
+      <Route path="/thanh-toan-dem-nguoc" element={<PaymentStep />} />
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
         <Route path="events" element={<EventManagement />} />
