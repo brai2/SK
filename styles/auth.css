@@ -1,0 +1,239 @@
+/* ======== Auth Layout ======== */
+body.auth-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.auth-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.auth-card {
+  background: var(--bg-white);
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+.auth-left, .auth-right {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ======== Signup Mode ======== */
+.auth-left.signup-mode {
+  background: var(--primary-color);
+  color: white;
+  justify-content: space-between;
+}
+
+.auth-tag {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(255,255,255,0.2);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  width: fit-content;
+}
+
+.auth-tag.light {
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.auth-tag.blue {
+  background: #DBEAFE;
+  color: #2563EB;
+}
+
+.auth-left.signup-mode h1 {
+  font-size: 48px;
+  color: white;
+  margin-bottom: auto;
+}
+
+.auth-left.signup-mode p {
+  color: rgba(255,255,255,0.8);
+  font-size: 16px;
+}
+
+/* ======== Login Mode ======== */
+.auth-left.login-mode {
+  background: var(--bg-main);
+  justify-content: flex-start;
+}
+
+.auth-left.login-mode h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.auth-left.login-mode h1 span {
+  color: var(--primary-color);
+  font-style: italic;
+}
+
+.auth-left.login-mode p {
+  color: var(--text-gray);
+  margin-bottom: 32px;
+}
+
+.auth-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-top: auto;
+}
+
+/* ======== Auth Forms ======== */
+.auth-right {
+  justify-content: center;
+}
+
+.auth-right h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.auth-right > p {
+  color: var(--text-gray);
+  margin-bottom: 32px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .input-group {
+  flex: 1;
+}
+
+.input-group label {
+  color: var(--text-gray);
+  font-size: 13px;
+}
+
+.input-field {
+  background: #F7F3FF;
+  border: 1px solid transparent;
+}
+
+.input-field:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.checkbox-group label {
+  font-size: 14px;
+  color: var(--text-gray);
+  cursor: pointer;
+}
+
+.forgot-link {
+  font-size: 13px;
+  color: var(--primary-color);
+  font-weight: 500;
+  text-align: right;
+  float: right;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--text-light);
+  margin-bottom: 24px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.auth-divider span {
+  padding: 0 16px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.social-logins {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.btn-social {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #F7F3FF;
+  padding: 12px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-dark);
+  border: 1px solid transparent;
+}
+
+.btn-social:hover {
+  background: var(--primary-light);
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-gray);
+}
+
+.auth-switch a {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .auth-card {
+    flex-direction: column;
+  }
+  .auth-left {
+    display: none; /* Hide illustrative part on mobile */
+  }
+  .auth-right {
+    padding: 40px 24px;
+  }
+}
