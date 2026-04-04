@@ -1,13 +1,52 @@
+const mongoose = require("mongoose");
 const Order = require("../models/Order");
+const TicketType = require("../models/TicketType");
+
+async function countReservedForType(ticketTypeId) {
+  const [row] = await Order.aggregate([
+    {
+      $match: {
+        ticketTypeId: new mongoose.Types.ObjectId(ticketTypeId),
+        status: { $in: ["pending", "paid"] },
+      },
+    },
+    { $group: { _id: null, total: { $sum: "$ticketQuantity" } } },
+  ]);
+  return row?.total ?? 0;
+}
 
 // Tạo đơn hàng mới
 exports.createOrder = async (req, res) => {
   try {
-    const { userId, eventId, ticketQuantity, totalPrice, paymentMethod, status } = req.body;
+    const {
+      userId,
+      eventId,
+      ticketQuantity,
+      totalPrice,
+      paymentMethod,
+      status,
+      ticketTypeId,
+    } = req.body;
 
     // 1. Kiểm tra các trường bắt buộc (Không có cái này là báo lỗi 400 ngay)
     if (!userId || !eventId || !ticketQuantity || !totalPrice) {
       return res.status(400).json({ message: "Vui lòng nhập đầy đủ thông tin đơn hàng!" });
+    }
+
+    let ticketTypeName = "";
+    if (ticketTypeId) {
+      const tt = await TicketType.findById(ticketTypeId);
+      if (!tt || String(tt.eventId) !== String(eventId)) {
+        return res.status(400).json({ message: "Loại vé không hợp lệ với sự kiện này." });
+      }
+      if (!tt.isActive) {
+        return res.status(400).json({ message: "Loại vé này đã ngừng bán." });
+      }
+      const reserved = await countReservedForType(ticketTypeId);
+      if (reserved + Number(ticketQuantity) > tt.capacity) {
+        return res.status(400).json({ message: "Không đủ vé cho loại này." });
+      }
+      ticketTypeName = tt.name;
     }
 
     // 2. Tạo object đơn hàng với các giá trị mặc định (Tùy chọn chuyên nghiệp)
@@ -16,6 +55,8 @@ exports.createOrder = async (req, res) => {
       eventId,
       ticketQuantity,
       totalPrice,
+      ticketTypeId: ticketTypeId || undefined,
+      ticketTypeName,
       // Nếu Thunder Client không gửi paymentMethod, mặc định là "Chuyển khoản"
       paymentMethod: paymentMethod || "Chuyển khoản",
       // Nếu Thunder Client không gửi status, mặc định là "pending"
@@ -37,7 +78,8 @@ exports.createOrder = async (req, res) => {
 exports.getOrdersByUserId = async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.params.userId })
-      .populate('eventId', 'name date location')
+      .populate("eventId", "title startsAt venue")
+      .populate("ticketTypeId", "name price")
       .sort({ createdAt: -1 });
 
     res.status(200).json(orders);
@@ -55,6 +97,27 @@ exports.getAllOrders = async (req, res) => {
   } catch (err) {
     // Trả về lỗi chi tiết để mình dễ bắt bệnh nếu vẫn hỏng
     res.status(500).json({ message: "Lỗi lấy dữ liệu", error: err.message });
+  }
+};
+
+// Danh sách đơn có populate — dùng trang quản lý vé admin
+exports.getAdminOrders = async (req, res) => {
+  try {
+    const { eventId, status } = req.query;
+    const limit = Math.min(Number(req.query.limit) || 300, 500);
+    const filter = {};
+    if (eventId) filter.eventId = eventId;
+    if (status && status !== "all") filter.status = status;
+
+    const orders = await Order.find(filter)
+      .populate("eventId", "title startsAt venue")
+      .populate("ticketTypeId", "name price capacity")
+      .sort({ createdAt: -1 })
+      .limit(limit);
+
+    res.status(200).json({ success: true, data: orders });
+  } catch (err) {
+    res.status(500).json({ message: "Lỗi lấy đơn hàng admin", error: err.message });
   }
 };
 
