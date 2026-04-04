@@ -1,12 +1,17 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './HomePage.jsx';
 import TicketBooking from './TicketBooking.jsx';
+
 import AdminLayout from './admin/AdminLayout.jsx';
 import AdminDashboard from './admin/AdminDashboard.jsx';
 import EventManagement from './admin/EventManagement.jsx';
 import AdminPlaceholder from './admin/AdminPlaceholder.jsx';
 
+
 import TicketManagement from './admin/TicketManagement.jsx';
+
+import CheckoutPayment from './CheckoutPayment.jsx';
+
 
 
 function App() {
@@ -14,6 +19,7 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/dat-ve" element={<TicketBooking />} />
+
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
         <Route path="events" element={<EventManagement />} />
@@ -25,6 +31,9 @@ function App() {
         <Route path="*" element={<Navigate to="/admin" replace />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
+
+      <Route path="/thanh-toan" element={<CheckoutPayment />} />
+
     </Routes>
   );
 }
