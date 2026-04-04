@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import {
   ArrowRight,
   CalendarDays,
@@ -48,6 +48,7 @@ const TICKETS = [
 ];
 
 function TicketBooking() {
+  const navigate = useNavigate();
   const [qty, setQty] = useState({ standard: 1, vip: 0 });
 
   const { lineItems, subtotal, tax, total } = useMemo(() => {
@@ -73,6 +74,25 @@ function TicketBooking() {
   function setQuantity(id, next) {
     const n = Math.max(0, Math.min(99, next));
     setQty((prev) => ({ ...prev, [id]: n }));
+  }
+
+  function goToCheckout() {
+    if (subtotal <= 0) return;
+    const ticketLine =
+      lineItems.map((row) => row.label).join(' · ') || '—';
+    navigate('/thanh-toan', {
+      state: {
+        order: {
+          eventTitle: EVENT.title,
+          eventImage: EVENT.image,
+          ticketLine,
+          subtotal,
+          serviceFee: tax,
+          vat: 0,
+          total,
+        },
+      },
+    });
   }
 
   return (
@@ -191,6 +211,7 @@ function TicketBooking() {
                 type="button"
                 className="booking-checkout"
                 disabled={subtotal <= 0}
+                onClick={goToCheckout}
               >
                 Thanh toán
                 <ArrowRight size={20} />
