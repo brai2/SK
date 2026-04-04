@@ -4,6 +4,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const Event = require("../models/Event");
+const TicketType = require("../models/TicketType");
 
 const samples = [
   {
@@ -57,8 +58,36 @@ const samples = [
 
 async function run() {
   await mongoose.connect(process.env.MONGO_URI);
-  await Event.deleteMany({ title: { $in: samples.map((s) => s.title) } });
-  await Event.insertMany(samples);
+  const titles = samples.map((s) => s.title);
+  const oldEvents = await Event.find({ title: { $in: titles } }).select("_id");
+  const oldIds = oldEvents.map((e) => e._id);
+  if (oldIds.length) {
+    await TicketType.deleteMany({ eventId: { $in: oldIds } });
+  }
+  await Event.deleteMany({ title: { $in: titles } });
+  const inserted = await Event.insertMany(samples);
+  const tech = inserted.find((e) => e.title.startsWith("Tech Future"));
+  if (tech) {
+    await TicketType.insertMany([
+      {
+        eventId: tech._id,
+        name: "Standard Access",
+        description: "Tea-break & tài liệu",
+        price: 1_250_000,
+        capacity: 500,
+        sortOrder: 0,
+      },
+      {
+        eventId: tech._id,
+        name: "VIP Experience",
+        description: "Networking dinner & ghế premium",
+        price: 2_500_000,
+        capacity: 80,
+        sortOrder: 1,
+      },
+    ]);
+    console.log("Đã seed 2 loại vé cho Tech Future Summit.");
+  }
   console.log("Đã seed", samples.length, "sự kiện mẫu.");
   await mongoose.disconnect();
 }
