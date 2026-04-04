@@ -1,14 +1,33 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './HomePage.jsx';
 import TicketBooking from './TicketBooking.jsx';
+
+import AdminLayout from './admin/AdminLayout.jsx';
+import AdminDashboard from './admin/AdminDashboard.jsx';
+import EventManagement from './admin/EventManagement.jsx';
+import AdminPlaceholder from './admin/AdminPlaceholder.jsx';
+
 import CheckoutPayment from './CheckoutPayment.jsx';
+
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/dat-ve" element={<TicketBooking />} />
+
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<AdminDashboard />} />
+        <Route path="events" element={<EventManagement />} />
+        <Route path="tickets" element={<AdminPlaceholder title="Quản lý vé" />} />
+        <Route path="attendees" element={<AdminPlaceholder title="Người tham dự" />} />
+        <Route path="reports" element={<AdminPlaceholder title="Báo cáo" />} />
+        <Route path="*" element={<Navigate to="/admin" replace />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
+
       <Route path="/thanh-toan" element={<CheckoutPayment />} />
+
     </Routes>
   );
 }
