@@ -23,8 +23,8 @@ function HomePage() {
             <a href="#">Contact</a>
           </div>
           <div className="nav-actions">
-            <button type="button" className="btn-login">Login</button>
-            <button type="button" className="btn-signup">Sign Up</button>
+            <Link to="/login" className="btn-login">Login</Link>
+            <Link to="/register" className="btn-signup">Sign Up</Link>
           </div>
         </nav>
       </header>
