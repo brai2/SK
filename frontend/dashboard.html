@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bảng điều khiển quản lý vé sự kiện - Quản lý kỹ thuật số">
+    <title>Bảng điều khiển Quản lý | Quản lý Kỹ thuật số</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-logo">
+                    <h2 class="logo-title">Quản lý Kỹ thuật số</h2>
+                    <span class="logo-subtitle">QUẢN LÝ CAO CẤP</span>
+                </div>
+                <nav class="sidebar-nav" id="sidebar-nav">
+                    <a href="#" class="nav-item active" id="nav-home">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                        <span>Trang chủ</span>
+                    </a>
+                    <a href="#" class="nav-item" id="nav-events">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        <span>Sự kiện</span>
+                    </a>
+                    <a href="#" class="nav-item" id="nav-tickets">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12h6l2-7 4 14 2-7h6" />
+                        </svg>
+                        <span>Vé</span>
+                    </a>
+                    <a href="#" class="nav-item" id="nav-analytics">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10" />
+                            <line x1="12" y1="20" x2="12" y2="4" />
+                            <line x1="6" y1="20" x2="6" y2="14" />
+                        </svg>
+                        <span>Phân tích</span>
+                    </a>
+                    <a href="#" class="nav-item" id="nav-settings">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                        </svg>
+                        <span>Cài đặt</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="sidebar-user" id="sidebar-user">
+                <div class="user-avatar-sidebar">
+                    <span>AV</span>
+                </div>
+                <div class="user-info-sidebar">
+                    <span class="user-name-sidebar">Alexander Vance</span>
+                    <span class="user-role-sidebar">Giám đốc sự kiện</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="topbar" id="topbar">
+                <div class="search-box" id="search-box">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <input type="text" placeholder="Tìm kiếm sự kiện hoặc vé..." id="search-input">
+                </div>
+                <div class="topbar-right">
+                    <button class="icon-btn" id="btn-notifications" aria-label="Thông báo">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                        </svg>
+                    </button>
+                    <button class="icon-btn" id="btn-settings-top" aria-label="Cài đặt">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                        </svg>
+                    </button>
+                    <div class="topbar-user" id="topbar-user">
+                        <div class="user-info-top">
+                            <span class="user-name-top">Alexander Vance</span>
+                            <span class="user-rank-top">HẠNG CAO CẤP</span>
+                        </div>
+                        <div class="user-avatar-top">
+                            <span>AV</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content" id="dashboard-content">
+                <!-- Header Section -->
+                <section class="dashboard-header" id="dashboard-header">
+                    <span class="section-label">TỔNG QUAN BẢNG ĐIỀU KHIỂN</span>
+                    <h1 class="dashboard-title">Bảng điều khiển <span class="highlight">Quản lý</span></h1>
+                    <p class="dashboard-desc">Chào mừng trở lại, Alexander. Các sự kiện gala cao cấp của bạn đang đạt
+                        hiệu suất cao hơn 24% so với dự kiến trong quý này.</p>
+                </section>
+
+                <!-- Stats Cards -->
+                <section class="stats-cards" id="stats-cards">
+                    <!-- Revenue Card -->
+                    <div class="stat-card" id="card-revenue">
+                        <div class="stat-card-header">
+                            <div class="stat-icon purple-light">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="1" x2="12" y2="23" />
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                </svg>
+                            </div>
+                            <span class="stat-badge">DOANH SỐ VÉ</span>
+                        </div>
+                        <div class="stat-label">Tổng Doanh thu</div>
+                        <div class="stat-value">$842.5k</div>
+                        <div class="stat-change positive">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                                <polyline points="17 6 23 6 23 12" />
+                            </svg>
+                            <span>+12.4% so với tháng trước</span>
+                        </div>
+                    </div>
+
+                    <!-- Active Tickets Card -->
+                    <div class="stat-card active-card" id="card-tickets">
+                        <div class="stat-card-header">
+                            <div class="stat-icon purple-light">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                                </svg>
+                            </div>
+                            <div class="avatar-group">
+                                <div class="avatar-sm" style="background: #8B5CF6;"><span>A</span></div>
+                                <div class="avatar-sm" style="background: #F59E0B;"><span>B</span></div>
+                                <div class="avatar-sm" style="background: #10B981;"><span>C</span></div>
+                                <div class="avatar-sm avatar-more"><span>+2</span></div>
+                            </div>
+                        </div>
+                        <div class="stat-label">Vé đang hoạt động</div>
+                        <div class="stat-value">1,284</div>
+                        <div class="stat-sub-row">
+                            <span class="stat-sub-badge">Đã bán hôm nay</span>
+                            <span class="stat-sub-text">Trung bình 4.5/giờ</span>
+                        </div>
+                    </div>
+
+                    <!-- Conversion Card -->
+                    <div class="stat-card conversion-card" id="card-conversion">
+                        <div class="conversion-label">Tỷ lệ chuyển đổi</div>
+                        <div class="conversion-value">4.8%</div>
+                        <button class="conversion-btn" id="btn-view-detail">XEM CHI TIẾT</button>
+                    </div>
+                </section>
+
+                <!-- Featured Event -->
+                <section class="featured-section" id="featured-section">
+                    <h2 class="section-title">Quản lý Sự kiện Nổi bật</h2>
+                    <div class="featured-card" id="featured-card">
+                        <img src="public/event_banner.png" alt="Nebula Arts Festival" class="featured-img">
+                        <div class="featured-overlay">
+                            <span class="featured-tag">RA MẮT TOÀN CẦU</span>
+                            <h3 class="featured-title">Nebula Arts Festival</h3>
+                            <p class="featured-desc">Quản lý việc phát hành vé VIP và hậu trường độc quyền cho buổi khai
+                                mạc chuyến lưu diễn quốc tế</p>
+                            <div class="featured-stats">
+                                <div class="featured-stat">
+                                    <span class="featured-stat-label">SỐ CHỖI</span>
+                                    <span class="featured-stat-value">15,000</span>
+                                </div>
+                                <div class="featured-stat">
+                                    <span class="featured-stat-label">KHOẢNG GIÁ</span>
+                                    <span class="featured-stat-value">$299 - $1.2k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Tickets -->
+                <section class="recent-section" id="recent-section">
+                    <div class="recent-header">
+                        <h2 class="section-title">Đặt vé Gần đây</h2>
+                        <a href="#" class="view-all-link" id="link-view-all">Xem tất cả giao dịch
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="table-card">
+                        <table class="tickets-table" id="tickets-table">
+                            <thead>
+                                <tr>
+                                    <th>KHÁCH HÀNG</th>
+                                    <th>HẠNG SỰ KIỆN</th>
+                                    <th>GIÁ</th>
+                                    <th>TRẠNG THÁI</th>
+                                    <th>THAO TÁC</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customers-tbody">
+                                <!-- Dữ liệu sẽ được render động từ API -->
+                                <tr id="loading-row">
+                                    <td colspan="5" style="text-align: center; padding: 2rem; color: #9CA3AF;">
+                                        Đang tải dữ liệu khách hàng...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+
+        // Map trạng thái sang hiển thị tiếng Việt
+        const STATUS_MAP = {
+            confirmed: { label: 'ĐÃ XÁC NHẬN', cssClass: 'confirmed' },
+            pending:   { label: 'ĐANG CHỜ',    cssClass: 'pending' },
+            cancelled: { label: 'ĐÃ HỦY',     cssClass: 'cancelled' }
+        };
+
+        // Format giá tiền
+        function formatPrice(price) {
+            return '$' + price.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        // Tạo HTML cho 1 dòng khách hàng
+        function createCustomerRow(customer) {
+            const status = STATUS_MAP[customer.status] || STATUS_MAP.pending;
+            return `
+                <tr>
+                    <td>
+                        <div class="customer-cell">
+                            <div class="customer-avatar" style="background: ${customer.avatarColor};">
+                                <span>${customer.initials}</span>
+                            </div>
+                            <div class="customer-info">
+                                <span class="customer-name">${customer.name}</span>
+                                <span class="customer-email">${customer.email}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${customer.eventTier}</td>
+                    <td class="price-cell">${formatPrice(customer.price)}</td>
+                    <td><span class="status-badge ${status.cssClass}">${status.label}</span></td>
+                    <td>
+                        <button class="action-btn" aria-label="Thao tác">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="1" />
+                                <circle cx="19" cy="12" r="1" />
+                                <circle cx="5" cy="12" r="1" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Fetch và render danh sách khách hàng
+        async function loadCustomers() {
+            const tbody = document.getElementById('customers-tbody');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/customers`);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                const customers = result.data;
+
+                if (!customers || customers.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 2rem; color: #9CA3AF;">
+                                Chưa có dữ liệu khách hàng.
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tbody.innerHTML = customers.map(createCustomerRow).join('');
+
+            } catch (error) {
+                console.error('Lỗi khi tải dữ liệu khách hàng:', error);
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 2rem; color: #EF4444;">
+                            ⚠ Không thể tải dữ liệu. Vui lòng kiểm tra kết nối API.
+                            <br><small style="color: #9CA3AF;">${error.message}</small>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Chạy khi DOM sẵn sàng
+        document.addEventListener('DOMContentLoaded', loadCustomers);
+    </script>
+</body>
+
+</html>

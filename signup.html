@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký - QLSK</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/auth.css">
+</head>
+<body class="auth-page">
+
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">QLSK</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="event-detail.html">Events</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="login.html" class="btn btn-ghost">Login</a>
+        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-main animate-fade-in">
+    <div class="auth-card">
+      <!-- Left Screen -->
+      <div class="auth-left signup-mode">
+        <div>
+          <h1>Xây dựng<br>sự kiện<br>đẳng cấp.</h1>
+        </div>
+        <p>Tham gia cộng đồng những nhà tổ chức sự kiện chuyên nghiệp nhất.</p>
+      </div>
+      
+      <!-- Right Screen -->
+      <div class="auth-right">
+        <h2>Tạo tài khoản</h2>
+        <p>Bắt đầu hành trình kiến tạo cùng chúng tôi.</p>
+        
+        <form onsubmit="event.preventDefault(); window.location.href='index.html';">
+          <div class="input-group">
+            <label>Họ tên</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" class="input-field" placeholder="Nguyễn Văn A" required>
+            </div>
+          </div>
+          
+          <div class="input-group">
+            <label>Email</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-envelope"></i>
+              <input type="email" class="input-field" placeholder="example@architect.com" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="input-group">
+              <label>Mật khẩu</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" class="input-field" placeholder="••••••••" required>
+              </div>
+            </div>
+            <div class="input-group">
+              <label>Xác nhận</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-key"></i>
+                <input type="password" class="input-field" placeholder="••••••••" required>
+              </div>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary auth-btn">Đăng ký ngay</button>
+          
+          <div class="auth-switch">
+            Đã có tài khoản? <a href="login.html">Đăng nhập</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer style="margin-top:0;">
+    <div class="container footer-bottom" style="border-top:none;">
+      <p style="color:var(--text-dark); font-weight: 500;">QLSK</p>
+      <div style="display:flex; gap: 24px;">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Help Center</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
