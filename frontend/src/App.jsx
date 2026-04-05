@@ -13,6 +13,8 @@ import StaffDashboardLayout from './components/layout/StaffDashboardLayout.jsx';
 import QRCheckIn from './pages/dashboard/QRCheckIn.jsx';
 import ParticipantList from './pages/dashboard/ParticipantList.jsx';
 import TicketCheckInApp from './pages/TicketCheckInApp.jsx';
+import TicketDashboard from './components/TicketDashboard.jsx'; // Giao diện màu tím của Việt
+import './tailwind.css'; // File CSS để lên màu tím
 
 function StaffComingSoon({ title }) {
   return (
@@ -26,6 +28,7 @@ function StaffComingSoon({ title }) {
 function App() {
   return (
     <Routes>
+      <Route path="/test-dashboard" element={<TicketDashboard />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/thong-bao" element={<Announcements />} />
       <Route path="/dat-ve" element={<TicketBooking />} />

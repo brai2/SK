@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  prefix: 'adm-',
-  content: ['./index.html', './src/admin/**/*.{js,jsx}'],
+  // Giữ nguyên prefix nếu nhóm của Việt đang dùng, 
+  // nhưng nếu giao diện Anima không hiện màu thì hãy thử xóa dòng prefix này đi.
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}", // Dòng này bao phủ toàn bộ file trong src
+  ],
   darkMode: 'class',
   theme: {
     extend: {
