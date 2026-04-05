@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ activeView, setActiveView }) => {
+  const navigate = useNavigate();
   const menuItems = [
     { 
       id: 'tickets', 
@@ -48,7 +50,15 @@ const Sidebar = ({ activeView, setActiveView }) => {
           <button
             key={item.id}
             className={`nav-link ${activeView === item.id ? 'active' : ''}`}
-            onClick={() => setActiveView(item.id)}
+            onClick={() => {
+              if (item.id === 'tickets') {
+                navigate('/myticket');
+              } else if (item.id === 'scanner') {
+                navigate('/checckin');
+              } else {
+                setActiveView(item.id);
+              }
+            }}
           >
             {item.icon}
             <span>{item.label}</span>
