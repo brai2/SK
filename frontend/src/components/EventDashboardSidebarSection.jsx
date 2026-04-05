@@ -1,43 +1,45 @@
 import { useState } from "react";
-//import icon9 from "./icon-9.svg";
-//import icon10 from "./icon-10.svg";
-//import icon11 from "./icon-11.svg";
-//import icon12 from "./icon-12.svg";
-//import icon13 from "./icon-13.svg";
+import {
+  BarChart2,
+  CalendarDays,
+  Home,
+  Settings,
+  Ticket,
+} from "lucide-react";
 
 const navItems = [
   {
     id: "home",
     label: "Trang chủ",
-    icon: icon9,
+    Icon: Home,
     iconClass: "w-4 h-[18px]",
     active: true,
   },
   {
     id: "events",
     label: "Sự kiện",
-    icon: icon10,
+    Icon: CalendarDays,
     iconClass: "w-[18px] h-5",
     active: false,
   },
   {
     id: "tickets",
     label: "Vé",
-    icon: icon11,
+    Icon: Ticket,
     iconClass: "w-5 h-4",
     active: false,
   },
   {
     id: "analytics",
     label: "Phân tích",
-    icon: icon12,
+    Icon: BarChart2,
     iconClass: "w-[22px] h-[17px]",
     active: false,
   },
   {
     id: "settings",
     label: "Cài đặt",
-    icon: icon13,
+    Icon: Settings,
     iconClass: "w-[20.1px] h-5",
     active: false,
   },
@@ -65,6 +67,7 @@ export const EventDashboardSidebarSection = () => {
       <div className="flex flex-col items-start gap-2 relative flex-1 self-stretch w-full grow">
         {navItems.map((item) => {
           const isActive = activeItem === item.id;
+          const NavIcon = item.Icon;
           return (
             <button
               key={item.id}
@@ -74,10 +77,11 @@ export const EventDashboardSidebarSection = () => {
               }`}
             >
               <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
-                <img
-                  className={`relative ${item.iconClass}`}
-                  alt="Icon"
-                  src={item.icon}
+                <NavIcon
+                  className={`relative ${item.iconClass} shrink-0 ${
+                    isActive ? "text-[#6b38d4]" : "text-slate-500"
+                  }`}
+                  strokeWidth={2}
                 />
               </div>
 

@@ -1,37 +1,3 @@
-//import icon2 from "./icon-2.svg";
-//import icon3 from "./icon-3.svg";
-//import icon4 from "./icon-4.svg";
-//import icon5 from "./icon-5.svg";
-//import icon14 from "./icon-14.svg";
-//import icon15 from "./icon-15.svg";
-import icon from "./icon.svg";
-import image from "./image.svg";
-
-const statsCards = [
-  {
-    id: "revenue",
-    colSpan: "col-[1_/_5]",
-    bgClass: "bg-white",
-    shadowClass: "",
-    content: "revenue",
-  },
-  {
-    id: "tickets",
-    colSpan: "col-[5_/_10]",
-    bgClass: "bg-white",
-    shadowClass: "shadow-[0px_12px_40px_-10px_#6b38d414]",
-    content: "tickets",
-  },
-  {
-    id: "conversion",
-    colSpan: "col-[10_/_13]",
-    bgClass:
-      "bg-[linear-gradient(141deg,rgba(107,56,212,1)_0%,rgba(132,85,239,1)_100%)]",
-    shadowClass: "",
-    content: "conversion",
-  },
-];
-
 const tableRows = [
   {
     id: 1,
@@ -48,7 +14,6 @@ const tableRows = [
     statusBg: "bg-[#e9ddff]",
     statusTextColor: "text-[#23005c]",
     statusWidth: "w-[76.7px]",
-    iconSrc: icon2,
     borderTop: false,
     paddingY: "pt-[33.5px] pb-[35px]",
     actionPaddingY: "py-6",
@@ -65,7 +30,6 @@ const tableRows = [
     statusBg: "bg-[#eddcff]",
     statusTextColor: "text-[#221534]",
     statusWidth: "w-[58.95px]",
-    iconSrc: icon3,
     borderTop: true,
     paddingY: "pt-[34px] pb-[35px]",
     actionPaddingY: "py-[24.5px]",
@@ -84,7 +48,6 @@ const tableRows = [
     statusBg: "bg-[#e9ddff]",
     statusTextColor: "text-[#23005c]",
     statusWidth: "w-[76.7px]",
-    iconSrc: icon4,
     borderTop: true,
     paddingY: "pt-[34px] pb-[35px]",
     actionPaddingY: "py-[24.5px]",
@@ -103,7 +66,6 @@ const tableRows = [
     statusBg: "bg-[#ffdad6]",
     statusTextColor: "text-[#93000a]",
     statusWidth: "w-[42.27px]",
-    iconSrc: icon5,
     borderTop: true,
     paddingY: "pt-[34px] pb-[34.5px]",
     actionPaddingY: "py-6",
