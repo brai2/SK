@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   prefix: 'adm-',
-  content: ['./index.html', './src/admin/**/*.{js,jsx}'],
+  content: ['./index.html', './src/admin/**/*.{js,jsx}', './src/Login.jsx', './src/Register.jsx'],
   darkMode: 'class',
   theme: {
     extend: {
